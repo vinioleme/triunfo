@@ -1,114 +1,115 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
     const {
+
       cardName,
       cardDescription,
+      onInputChange,
       cardAttr1,
       cardAttr2,
       cardAttr3,
       cardImage,
-      cardRare,
       cardTrunfo,
-      hasTrunfo,
+      cardRare,
       isSaveButtonDisabled,
-      onInputChange,
       onSaveButtonClick,
+      hasTrunfo,
     } = this.props;
 
     return (
-      <form>
+
+      <div>
 
         <label htmlFor="cardName">
-          Nome
           <input
-            type="text"
             data-testid="name-input"
+            type="text"
+            id="cardName"
             name="cardName"
+            placeholder="Card Name"
             value={ cardName }
             onChange={ onInputChange }
-            placeholder="Card Name"
-            id="cardName"
           />
         </label>
+
         <label htmlFor="cardDescription">
-          Descrição
           <input
-            type="text-area"
             data-testid="description-input"
-            name="cardDescription"
+            type="textarea"
             id="cardDescription"
+            name="cardDescription"
+            placeholder="Card Description"
             value={ cardDescription }
             onChange={ onInputChange }
-            placeholder="Card Description"
           />
         </label>
-        <label htmlFor="cardAttr1">
-          Attr1
+
+        <label htmlFor="card1">
           <input
-            type="number"
             data-testid="attr1-input"
+            type="Number"
+            id="card1"
             name="cardAttr1"
-            id="cardAttr1"
+            placeholder="Card 1"
             value={ cardAttr1 }
             onChange={ onInputChange }
-            placeholder="Card 1"
           />
         </label>
-        <label htmlFor="cardAttr2">
-          Attr2
+
+        <label htmlFor="card2">
           <input
-            type="number"
             data-testid="attr2-input"
+            type="Number"
+            id="card2"
             name="cardAttr2"
-            id="cardAttr2"
+            placeholder="Card 2"
             value={ cardAttr2 }
             onChange={ onInputChange }
-            placeholder="Card 2"
           />
         </label>
-        <label htmlFor="cardAttr3">
-          Attr3
+
+        <label htmlFor="card3">
           <input
-            type="number"
             data-testid="attr3-input"
+            type="Number"
+            id="card3"
             name="cardAttr3"
-            id="cardAttr3"
+            placeholder="Card 3"
             value={ cardAttr3 }
             onChange={ onInputChange }
-            placeholder="Card 3"
           />
         </label>
+
         <label htmlFor="cardImage">
-          Imagem
           <input
-            type="text"
             data-testid="image-input"
-            name="cardImage"
+            type="text"
             id="cardImage"
+            name="cardImage"
+            placeholder="Card img"
             value={ cardImage }
             onChange={ onInputChange }
-            placeholder="Card img"
           />
         </label>
-        <label htmlFor="cardRare">
-          Tipo:
+
+        <label htmlFor=" cardRare ">
           <select
             data-testid="rare-input"
             name="cardRare"
-            onChange={ onInputChange }
             value={ cardRare }
+            onChange={ onInputChange }
           >
-            <option value="normal">normal</option>
-            <option value="raro">raro</option>
-            <option value="muito raro">muito raro</option>
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito raro</option>
           </select>
         </label>
 
         <label htmlFor="cardTrunfo">
-          { hasTrunfo ? (<input
+          { !hasTrunfo ? (<input
             data-testid="trunfo-input"
             type="checkbox"
             id="cardTrunfo"
@@ -118,34 +119,36 @@ class Form extends React.Component {
           />) : <p>Você já tem um Super Trunfo em seu baralho</p> }
         </label>
 
-        <button
-          data-testid="save-button"
-          type="button"
-          name="button"
-          disabled={ isSaveButtonDisabled }
-          onClick={ onSaveButtonClick }
-        >
-          Salvar
-        </button>
+        <lable>
+          <button
+            data-testid="save-button"
+            type="button"
+            name="button"
+            disabled={ isSaveButtonDisabled }
+            onClick={ onSaveButtonClick }
+          >
+            Salvar
+          </button>
 
-      </form>
+        </lable>
+      </div>
     );
   }
 }
 
 Form.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.string.isRequired,
-  cardAttr2: PropTypes.string.isRequired,
-  cardAttr3: PropTypes.string.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
-  onSaveButtonClick: PropTypes.func.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  cardName: propTypes.string.isRequired,
+  cardDescription: propTypes.string.isRequired,
+  cardAttr1: propTypes.string.isRequired,
+  cardAttr2: propTypes.string.isRequired,
+  cardAttr3: propTypes.string.isRequired,
+  cardImage: propTypes.string.isRequired,
+  cardRare: propTypes.string.isRequired,
+  cardTrunfo: propTypes.bool.isRequired,
+  hasTrunfo: propTypes.bool.isRequired,
+  onSaveButtonClick: propTypes.func.isRequired,
+  onInputChange: propTypes.func.isRequired,
+  isSaveButtonDisabled: propTypes.bool.isRequired,
 };
 
 export default Form;

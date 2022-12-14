@@ -11,28 +11,27 @@ class App extends React.Component {
     cardAttr3: '',
     cardImage: '',
     cardRare: 'normal',
-    hasTrunfo: false,
     cardTrunfo: false,
     savedCard: [],
   };
 
   onInputChange = (element) => {
     const { name, type, checked } = element.target;
-    const x = type === 'checkbox' ? checked : element.target.value;
-    this.setState({ [name]: x });
+    const nome = type === 'checkbox' ? checked : element.target.value;
+    this.setState({ [name]: nome });
   };
 
   onSaveButtonClick = () => {
     const {
       cardName,
       cardDescription,
+      cardImage,
+      cardRare,
       cardAttr1,
       cardAttr2,
       cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
       savedCard,
+      cardTrunfo,
     } = this.state;
 
     this.setState({
@@ -41,11 +40,11 @@ class App extends React.Component {
         {
           cardName,
           cardDescription,
+          cardImage,
+          cardRare,
           cardAttr1,
           cardAttr2,
           cardAttr3,
-          cardImage,
-          cardRare,
           cardTrunfo,
         },
       ],
@@ -61,9 +60,9 @@ class App extends React.Component {
   };
 
   forms = () => {
-    const max = 90;
-    const min = 0;
-    const maxsum = 210;
+    const maximo = 90;
+    const minimo = 0;
+    const maximaSoma = 210;
     const {
       cardName,
       cardDescription,
@@ -75,11 +74,11 @@ class App extends React.Component {
     const name = cardName !== '';
     const img = cardImage !== '';
     const description = cardDescription !== '';
-    const one = cardAttr1 <= max && cardAttr1 >= min;
-    const two = cardAttr2 <= max && cardAttr2 >= min;
-    const three = cardAttr3 <= max && cardAttr3 >= min;
-    const sum = (+cardAttr1) + (+cardAttr2) + (+cardAttr3) <= maxsum;
-    return !(name && img && description && one && two && three && sum);
+    const carta1 = cardAttr1 <= maximo && cardAttr1 >= minimo;
+    const carta2 = cardAttr2 <= maximo && cardAttr2 >= minimo;
+    const carta3 = cardAttr3 <= maximo && cardAttr3 >= minimo;
+    const soma = (+cardAttr1) + (+cardAttr2) + (+cardAttr3) <= maximaSoma;
+    return !(name && img && description && carta1 && carta2 && carta3 && soma);
   };
 
   hasTrunfo = () => {
@@ -113,7 +112,8 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ this.forms() }
           onSaveButtonClick={ this.onSaveButtonClick }
-          hasTrunfo={ this.hasTrunfo }
+          hasTrunfo={ this.hasTrunfo() }
+
         />
         <Card
           cardName={ cardName }
@@ -130,5 +130,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
